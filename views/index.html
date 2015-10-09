@@ -1,0 +1,45 @@
+<html lang="en">
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		
+	</head>
+	<body>
+		<!-- 4. Move the layout into a seperate HTML file -->
+		<!-- sort that out -->
+		<!-- /\\/\/\/\/\/\/\/\/ STRIP OFF THE OPENING AND CLOSING BODY TAGS AND PUT THEM IN LAYOUT.HTML -->
+			
+		<h2>Deaf Grandma</h2>
+<!-- 3. Make the call async !! This could be part of lab -->
+		<script>
+		$(function(){ // look into this wrapper function --> why?
+			$('#submit').click(function(e){
+				e.preventDefault(); // stop the submit button from actually sending the synchronous call
+				
+				// console.log("submit button clicked"); // Check to make sure our even is recognized
+				
+				var data = {}; // make a json object
+				data.words = $("#words").val(); // stuff the userinput into the json object
+
+				$.ajax({ // make async call
+					type:'POST',
+					data: JSON.stringify(data),
+					contentType: 'application/json',
+					url: '/'
+				})
+				.done(function(response) { // on callback stuff the response into the #response dive
+					$("#response").text(response);
+				});
+			});
+		});
+		</script>
+
+<!-- 1. Make the HTML form first to show the synchronous response  !! This could be part of lab--> 
+<!-- 2. Explain routing -->
+		<form method="POST" action="/">
+			<input type="text" name="words" placeholder="Say something to Grandma..." size="50" id="words">
+			<input type="submit" value="Say it!" id="submit">
+		</form>
+   
+		<div id="response"></div>
+	</body>
+</html>
