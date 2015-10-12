@@ -15,8 +15,13 @@ var express = require('express'),
 
 var app = express();
 
+// use handlebars for templating
+var handlebars = require('express-handlebars').create({ defaultLayout: 'main' });
+app.engine('handlebars', handlebars.engine);
+app.set('view engine', 'handlebars');
+
 // Use static html pages (not dynamic templates)
-app.use(express.static(__dirname + '/views'));
+//app.use(express.static(__dirname + '/views'));
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 

@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "express": "^4.13.3",
+    "express-handlebars": "^2.0.1",
     "handlebars": "^4.0.3",
     "hogan-express": "^0.5.2"
   }
